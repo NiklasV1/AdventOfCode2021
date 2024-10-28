@@ -10,7 +10,7 @@ public class Day1 {
         System.out.println(input);
 
         // Part 1
-        int result1 = evaluate(input);
+        int result1 = evaluate1(input);
         System.out.printf("Result 1: %d%n", result1);
 
         // Part 2
@@ -37,7 +37,7 @@ public class Day1 {
         return result;
     }
 
-    public static int evaluate(List<Integer> input) {
+    public static int evaluate1(List<Integer> input) {
         int result = 0;
         int previousDepth = input.getFirst();
 
