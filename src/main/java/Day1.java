@@ -5,9 +5,10 @@ import java.util.Scanner;
 
 public class Day1 {
     public static void main(String[] args) {
-        System.out.println("Hehe");
         ArrayList<Integer> input = readInput();
         System.out.println(input);
+        int result = evaluate(input);
+        System.out.printf("Result: %d%n", result);
     }
 
     public static ArrayList<Integer> readInput() {
@@ -26,6 +27,20 @@ public class Day1 {
         } catch (FileNotFoundException e) {
             System.out.println("File not found!");
         }
+        return result;
+    }
+
+    public static int evaluate(ArrayList<Integer> input) {
+        int result = 0;
+        int previousDepth = input.getFirst();
+
+        for (Integer value : input) {
+            if (value > previousDepth) {
+                result++;
+            }
+            previousDepth = value;
+        }
+
         return result;
     }
 }
