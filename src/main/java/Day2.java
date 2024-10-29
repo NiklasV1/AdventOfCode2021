@@ -17,8 +17,8 @@ public class Day2 {
         System.out.printf("Result 1: %d%n", result1);
 
         // Part 2
-        //int result2 = evaluate2(input);
-        //System.out.printf("Result 2: %d%n", result2);
+        int result2 = evaluate2(input);
+        System.out.printf("Result 2: %d%n", result2);
     }
 
     public static List<Command> readInput() {
@@ -58,6 +58,29 @@ public class Day2 {
                 case UP -> depth -= command.amount;
                 case DOWN -> depth += command.amount;
                 case FORWARD -> position += command.amount;
+            }
+        }
+
+        return position * depth;
+    }
+
+    public static int evaluate2(List<Command> input) {
+        int position = 0;
+        int depth = 0;
+        int aim = 0;
+
+        for (Command command : input) {
+            switch (command.direction) {
+                case UP:
+                    aim -= command.amount;
+                    break;
+                case DOWN:
+                    aim += command.amount;
+                    break;
+                case FORWARD:
+                    position += command.amount;
+                    depth += command.amount * aim;
+                    break;
             }
         }
 
