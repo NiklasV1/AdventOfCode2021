@@ -13,8 +13,8 @@ public class Day3 {
         System.out.printf("Result 1: %d%n", result1);
 
         // Part 2
-//        int result2 = evaluate2(input);
-//        System.out.printf("Result 2: %d%n", result2);
+        int result2 = evaluate2(input, binLength);
+        System.out.printf("Result 2: %d%n", result2);
     }
 
     public static List<String> readInput() {
@@ -57,9 +57,80 @@ public class Day3 {
                 epsilon.append("1");
             }
         }
-        System.out.println(gamma);
-        System.out.println(epsilon);
 
         return Integer.parseInt(gamma.toString(), 2) * Integer.parseInt(epsilon.toString(), 2);
     }
+
+    public static int evaluate2(List<String> input, int binLength) {
+        return getOxygenRating(input, binLength, 0) * getCo2Rating(input, binLength, 0);
+    }
+
+    public static int getOxygenRating(List<String> input, int binLength, int significantBit) {
+        if (input.size() == 1) {
+            return Integer.parseInt(input.getFirst(), 2);
+        } else {
+            // Filter
+            List<String> newList = new ArrayList<>();
+            int counter = 0;
+            char significantChar;
+
+            for (String binary : input) {
+                if (binary.charAt(significantBit) == '1') {
+                    counter++;
+                }
+            }
+
+            if (counter * 2 >= input.size()) {
+                significantChar = '1';
+            } else {
+                significantChar = '0';
+            }
+
+            for (String binary : input) {
+                if (binary.charAt(significantBit) == significantChar) {
+                    newList.add(binary);
+                }
+            }
+
+            significantBit++;
+
+            // Recursion
+            return getOxygenRating(newList, binLength, significantBit);
+        }
+    }
+
+    public static int getCo2Rating(List<String> input, int binLength, int significantBit) {
+        if (input.size() == 1) {
+            return Integer.parseInt(input.getFirst(), 2);
+        } else {
+            // Filter
+            List<String> newList = new ArrayList<>();
+            int counter = 0;
+            char significantChar;
+
+            for (String binary : input) {
+                if (binary.charAt(significantBit) == '1') {
+                    counter++;
+                }
+            }
+
+            if (counter * 2 >= input.size()) {
+                significantChar = '0';
+            } else {
+                significantChar = '1';
+            }
+
+            for (String binary : input) {
+                if (binary.charAt(significantBit) == significantChar) {
+                    newList.add(binary);
+                }
+            }
+
+            significantBit++;
+
+            // Recursion
+            return getCo2Rating(newList, binLength, significantBit);
+        }
+    }
+
 }
