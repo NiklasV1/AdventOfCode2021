@@ -1,4 +1,4 @@
-package utils;
+package utils.day2;
 
 public class Command {
 

@@ -1,5 +1,5 @@
-import utils.Command;
-import utils.Direction;
+import utils.day2.Command;
+import utils.day2.Direction;
 
 import java.io.File;
 import java.io.FileNotFoundException;
