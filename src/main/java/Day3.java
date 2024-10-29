@@ -13,7 +13,7 @@ public class Day3 {
         System.out.printf("Result 1: %d%n", result1);
 
         // Part 2
-        int result2 = evaluate2(input, binLength);
+        int result2 = evaluate2(input);
         System.out.printf("Result 2: %d%n", result2);
     }
 
@@ -61,11 +61,11 @@ public class Day3 {
         return Integer.parseInt(gamma.toString(), 2) * Integer.parseInt(epsilon.toString(), 2);
     }
 
-    public static int evaluate2(List<String> input, int binLength) {
-        return getOxygenRating(input, binLength, 0) * getCo2Rating(input, binLength, 0);
+    public static int evaluate2(List<String> input) {
+        return getOxygenRating(input, 0) * getCo2Rating(input, 0);
     }
 
-    public static int getOxygenRating(List<String> input, int binLength, int significantBit) {
+    public static int getOxygenRating(List<String> input, int significantBit) {
         if (input.size() == 1) {
             return Integer.parseInt(input.getFirst(), 2);
         } else {
@@ -95,11 +95,11 @@ public class Day3 {
             significantBit++;
 
             // Recursion
-            return getOxygenRating(newList, binLength, significantBit);
+            return getOxygenRating(newList, significantBit);
         }
     }
 
-    public static int getCo2Rating(List<String> input, int binLength, int significantBit) {
+    public static int getCo2Rating(List<String> input, int significantBit) {
         if (input.size() == 1) {
             return Integer.parseInt(input.getFirst(), 2);
         } else {
@@ -129,7 +129,7 @@ public class Day3 {
             significantBit++;
 
             // Recursion
-            return getCo2Rating(newList, binLength, significantBit);
+            return getCo2Rating(newList, significantBit);
         }
     }
 
