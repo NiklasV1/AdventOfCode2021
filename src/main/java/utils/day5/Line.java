@@ -19,6 +19,10 @@ public class Line {
         return start.y == end.y;
     }
 
+    public boolean isStraight() {
+        return isHorizontal() || isVertical();
+    }
+
     @Override
     public String toString() {
         return "Line: " + start.x + "," + start.y + "-" + end.x + "," + end.y;

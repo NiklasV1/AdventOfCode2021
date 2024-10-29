@@ -1,5 +1,7 @@
 package utils.day5;
 
+import java.util.Arrays;
+
 public class Map2D {
     public int width;
     public int height;
@@ -30,6 +32,43 @@ public class Map2D {
         }
     }
 
+    public void drawLine(Line line) {
+        if (line.isStraight()) {
+            drawStraightLine(line);
+        } else {
+            int[] xRange = getIntsInRange(line.start.x, line.end.x);
+            int[] yRange = getIntsInRange(line.start.y, line.end.y);
+
+            for (int i = 0; i < xRange.length; i++) {
+                drawPosition(new Position(xRange[i], yRange[i]));
+            }
+        }
+    }
+
+    private int[] getIntsInRange(int a, int b) {
+        int[] result;
+
+        if (a >= b) {
+            int size = a - b + 1;
+            result = new int[size];
+            for (int i = 0; i < size; i++) {
+                result[i] = a - i;
+            }
+
+        } else {
+            int size = b - a + 1;
+            result = new int[size];
+            for (int i = 0; i < size; i++) {
+                result[i] = a + i;
+            }
+        }
+        return result;
+    }
+
+    public void drawPosition(Position position) {
+        map[position.x][position.y]++;
+    }
+
     public int evaluateMap(int threshold) {
         int amount = 0;
 
@@ -43,5 +82,9 @@ public class Map2D {
         }
 
         return amount;
+    }
+
+    public void emptyMap() {
+        map = new int[width][height];
     }
 }

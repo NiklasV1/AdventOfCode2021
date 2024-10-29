@@ -17,9 +17,11 @@ public class Day5 {
         int result1 = evaluate1(input);
         System.out.printf("Result 1: %d%n", result1);
 
+        input.map.emptyMap();
+
         // Part 2
-//        int result2 = evaluate2(input);
-//        System.out.printf("Result 2: %d%n", result2);
+        int result2 = evaluate2(input);
+        System.out.printf("Result 2: %d%n", result2);
     }
 
     public static MapInput readInput() {
@@ -56,6 +58,13 @@ public class Day5 {
     public static int evaluate1(MapInput input) {
         for (Line line : input.lines) {
             input.map.drawStraightLine(line);
+        }
+        return input.map.evaluateMap(2);
+    }
+
+    public static int evaluate2(MapInput input) {
+        for (Line line : input.lines) {
+            input.map.drawLine(line);
         }
         return input.map.evaluateMap(2);
     }
