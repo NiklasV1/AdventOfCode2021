@@ -1,5 +1,6 @@
 import utils.day6.Fish;
 import utils.day6.FishTank;
+import utils.day6.FishTank2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,8 +18,8 @@ public class Day6 {
         System.out.printf("Result 1: %d%n", result1);
 
         // Part 2
-//        int result2 = evaluate2(input);
-//        System.out.printf("Result 2: %d%n", result2);
+        long result2 = evaluate2(input, 256);
+        System.out.printf("Result 2: %d%n", result2);
     }
 
     public static List<Integer> readInput() {
@@ -45,6 +46,8 @@ public class Day6 {
     }
 
     public static int evaluate1(List<Integer> input, int days) {
+        // Simulation Solution
+
         // Create Simulation
         List<Fish> fishes = new ArrayList<>();
         for (Integer value : input) {
@@ -59,5 +62,11 @@ public class Day6 {
             tank.simulationStep();
         }
         return tank.countFish();
+    }
+
+    public static long evaluate2(List<Integer> input, int days) {
+        // Efficient Mathematical Solution
+        FishTank2 tank = new FishTank2(input);
+        return tank.evaluate(days);
     }
 }
