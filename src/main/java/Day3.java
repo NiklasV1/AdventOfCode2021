@@ -1,6 +1,3 @@
-import utils.Command;
-import utils.Direction;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
