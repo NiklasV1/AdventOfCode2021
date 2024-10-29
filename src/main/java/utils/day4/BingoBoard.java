@@ -4,6 +4,7 @@ public class BingoBoard {
     public BingoField[][] board;
     public int size;
     public int lastMarked;
+    public boolean won;
 
     public BingoBoard(int[][] values, int size) {
         this.size = size;
@@ -43,7 +44,8 @@ public class BingoBoard {
     }
 
     public boolean checkWin() {
-        return checkColumns() || checkRows();
+        won = checkColumns() || checkRows();
+        return won;
     }
 
     private boolean checkColumns() {

@@ -17,8 +17,8 @@ public class Day4 {
         System.out.printf("Result 1: %d%n", result1);
 
         // Part 2
-//        int result2 = evaluate2(input);
-//        System.out.printf("Result 2: %d%n", result2);
+        int result2 = evaluate2(input);
+        System.out.printf("Result 2: %d%n", result2);
     }
 
     public static BingoInput readInput() {
@@ -85,5 +85,24 @@ public class Day4 {
             }
         }
         return 0;
+    }
+
+    public static int evaluate2(BingoInput input) {
+        BingoBoard lastWonBoard = null;
+        for (int val : input.instructions) {
+            for (BingoBoard board : input.boards) {
+                if (!board.won) {
+                    board.markValue(val);
+                    if (board.checkWin()) {
+                        lastWonBoard = board;
+                    }
+                }
+            }
+        }
+        if (lastWonBoard != null) {
+            return lastWonBoard.calculateScore();
+        } else {
+            return 0;
+        }
     }
 }
