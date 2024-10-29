@@ -1,7 +1,5 @@
 package utils.day5;
 
-import java.util.Arrays;
-
 public class Map2D {
     public int width;
     public int height;
